@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/coin_price_item_height"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:cardBackgroundColor="@android:color/background_light"
+        android:padding="6dp"
+        android:layout_marginLeft="6dp"
+        android:layout_marginRight="6dp"
+        android:layout_marginTop="3dp"
+        android:layout_marginBottom="3dp">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center" >
+
+            <Button
+                android:id="@+id/buy"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/buy_coin_button_height"
+                android:drawablePadding="10dp"
+                android:gravity="center_vertical"
+                android:lines="1"
+                android:paddingBottom="0dp"
+                android:paddingLeft="10dp"
+                android:paddingTop="0dp"
+                android:text="خرید"
+                android:drawableLeft="@drawable/coin_gold2"
+                android:textColor="@android:color/white"
+                android:paddingRight="10dp"
+                android:minWidth="140dp"
+                android:background="@drawable/button_green" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_vertical|right">
+
+            <TextView
+                android:id="@+id/description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="0dp"
+                android:lines="1"
+                android:padding="0dp"
+                android:text="1k follower"
+                android:textColor="#000000" />
+
+            <ImageView
+                android:id="@+id/image"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_centerVertical="true"
+                android:layout_marginBottom="3dp"
+                android:layout_marginRight="0dp"
+                android:layout_marginTop="3dp"
+                android:contextClickable="true"
+                android:padding="6dp"
+                android:src="@drawable/contact_green" />
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</android.support.v7.widget.CardView>
+</LinearLayout>
