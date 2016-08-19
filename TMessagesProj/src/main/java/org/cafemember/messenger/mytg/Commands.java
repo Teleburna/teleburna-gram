@@ -555,13 +555,21 @@ public class Commands {
     public static void addChannel(final Channel channel){
         Log.d("COMMAND","AddChannel Triggerd");
         final int channelId = (int) channel.id;
+
+
+
         AlertDialog.Builder builder ;
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.HONEYCOMB) {
-            builder = new AlertDialog.Builder(context, R.style.MyDialog);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            builder = new AlertDialog.Builder(context, R.style.MyAlertDialogStyle);
         }
+//        else if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.HONEYCOMB && android.os.Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+//            builder = new AlertDialog.Builder(context, R.style.MyDialog);
+//        }
         else {
             builder = new AlertDialog.Builder(context);
         }
+
+
         builder.setTitle(LocaleController.getString("MemberBegirTitle", R.string.MemberBegirTitle));
 
                             /*builder.setItems(Defaults.MEMBERS_COUNT , new DialogInterface.OnClickListener() {
@@ -673,6 +681,20 @@ public class Commands {
     }
 
     public static void loadCoins(final OnCoinsReady onCoinsReady){
+
+        AlertDialog.Builder builder = null;
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.HONEYCOMB) {
+            builder = new AlertDialog.Builder(context, R.style.MyDialog);
+        }
+        else {
+            builder = new AlertDialog.Builder(context);
+        }
+        builder.setTitle(LocaleController.getString("AppName", R.string.AppName));
+        builder.setMessage(LocaleController.getString("MyChannelError", R.string.MyChannelError)+"  \n@");
+        builder.setNegativeButton(LocaleController.getString("MyCancel", R.string.MyCancel), null);
+        showAlertDialog(builder.create());
+
+
 //        if( ApplicationLoader.joinCoins == 0){
             ApplicationLoader.setJoinCoins(Defaults.getInstance().getMyCoin(),true);
             API.getInstance().run(String.format(Locale.ENGLISH,"/coin"), new OnResponseReadyListener() {
@@ -744,7 +766,7 @@ public class Commands {
 //            FontManager.instance().setTypefaceImmediate(visibleDialog.getWindow().getDecorView());
             visibleDialog.getWindow().setType(WindowManager.LayoutParams.TYPE_SYSTEM_ALERT);
             visibleDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
-            visibleDialog.setCanceledOnTouchOutside(true);
+            visibleDialog.setCanceledOnTouchOutside(false);
             visibleDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
                 @Override
                 public void onDismiss(DialogInterface dialog) {

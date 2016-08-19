@@ -72,10 +72,10 @@
     {
       "client_info": {
         "mobilesdk_app_id": "1:760348033671:android:f6afd7b67eae3860",
-        "client_id": "android:ir.appmy.cafemember2",
+        "client_id": "android:ir.telemember.gram",
         "client_type": 1,
         "android_client_info": {
-          "package_name": "ir.appmy.cafemember2",
+          "package_name": "ir.telemember.gram",
           "certificate_hash": []
         }
       },
@@ -104,10 +104,10 @@
     {
       "client_info": {
         "mobilesdk_app_id": "1:760348033671:android:dc022572c167a16c",
-        "client_id": "android:ir.appmy.cafemember2.beta",
+        "client_id": "android:ir.telemember.gram.beta",
         "client_type": 1,
         "android_client_info": {
-          "package_name": "ir.appmy.cafemember2.beta",
+          "package_name": "ir.telemember.gram.beta",
           "certificate_hash": []
         }
       },

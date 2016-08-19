@@ -128,12 +128,12 @@ public class ChannelsFragment extends Fragment implements Refrashable, SwipeRefr
                                             //channels.add(currentChannel);
                                             adapter.notifyDataSetChanged();
                                         }
-                                        else {
+                                      /*  else {
                                             currentChannel.title = currentChannel.name;
                                             adapter.add(currentChannel);
                                             //channels.add(currentChannel);
                                             adapter.notifyDataSetChanged();
-                                        }
+                                        }*/
                                     }
                                 });
                             }

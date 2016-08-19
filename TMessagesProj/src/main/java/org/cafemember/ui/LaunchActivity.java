@@ -401,8 +401,8 @@ public class LaunchActivity extends FragmentActivity implements ActionBarLayout.
                 }
                 else if (position == 10) {
                     try {
-                        TransfareActivity his = new TransfareActivity();
-                        presentFragment(his);
+//                        TransfareActivity his = new TransfareActivity();
+//                        presentFragment(his);
                     } catch (Exception e) {
                         FileLog.e("tmessages", e);
                     }

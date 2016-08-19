@@ -13,6 +13,7 @@
         android:src="@drawable/free_coin"
         android:scaleType="fitCenter"
         android:layout_margin="5dp"
+        android:visibility="gone"
         android:layout_weight="1" />
 
     <TextView xmlns:android="http://schemas.android.com/apk/res/android"

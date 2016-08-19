@@ -24,7 +24,7 @@ android {
     buildToolsVersion '23.0.3'
 
     useLibrary 'org.apache.http.legacy'
-    defaultConfig.applicationId = "ir.appmy.cafemember2"
+    defaultConfig.applicationId = "ir.telemember.gram"
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_7

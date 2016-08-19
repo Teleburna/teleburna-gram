@@ -8,6 +8,7 @@
 
 package org.cafemember.messenger.mytg.fragments;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
@@ -16,7 +17,10 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.net.Uri;
+import android.os.Bundle;
 import android.provider.ContactsContract;
+import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.text.Editable;
 import android.text.InputType;
 import android.text.TextWatcher;
@@ -26,7 +30,9 @@ import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RadioGroup;
@@ -34,6 +40,8 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.cafemember.messenger.mytg.listeners.Refrashable;
+import org.cafemember.ui.DialogsActivity;
 import org.json.JSONObject;
 import org.cafemember.messenger.AndroidUtilities;
 import org.cafemember.messenger.ApplicationLoader;
@@ -46,8 +54,9 @@ import org.cafemember.ui.ActionBar.ActionBar;
 import org.cafemember.ui.ActionBar.ActionBarMenu;
 import org.cafemember.ui.ActionBar.BaseFragment;
 import org.cafemember.ui.Components.LayoutHelper;
+@SuppressLint("ValidFragment")
 
-public class TransfareActivity extends BaseFragment {
+public class TransfareActivity extends Fragment implements Refrashable, SwipeRefreshLayout.OnRefreshListener {
 
     private EditText phoneField;
     private EditText amountField;
@@ -62,14 +71,22 @@ public class TransfareActivity extends BaseFragment {
     private Runnable checkRunnable = null;
     private boolean lastNameAvailable = false;
     private Context context;
+    private final DialogsActivity dialogsActivity;
 
     private final static int done_button = 1;
     private final static int contact_button = 2;
     private final int PICK_CONTACT = 7;
 
+    @SuppressLint("ValidFragment")
+    public TransfareActivity(DialogsActivity dialogsActivity){
+        this.dialogsActivity = dialogsActivity;
+    }
+
     @Override
-    public View createView(Context context) {
-        this.context = context;
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        context = getContext();
+//        View layout = inflater.inflate(R.layout.channels_layout, null);
+        /*this.context = context;
         actionBar.setBackButtonImage(R.drawable.ic_ab_back);
         actionBar.setAllowOverlayTitle(true);
         actionBar.setTitle(LocaleController.getString("MenuTransfare", R.string.MenuTransfare));
@@ -89,11 +106,11 @@ public class TransfareActivity extends BaseFragment {
         ActionBarMenu menu = actionBar.createMenu();
         contactsButton = menu.addItemWithWidth(contact_button, R.drawable.user_profile, AndroidUtilities.dp(56));
         doneButton = menu.addItemWithWidth(done_button, R.drawable.ic_done, AndroidUtilities.dp(56));
+*/
 
 
 
-
-        fragmentView = new LinearLayout(context);
+        LinearLayout fragmentView = new LinearLayout(context);
         ((LinearLayout) fragmentView).setOrientation(LinearLayout.VERTICAL);
         fragmentView.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -115,6 +132,7 @@ public class TransfareActivity extends BaseFragment {
         phoneField.setTextColor(0xff212121);
         phoneField.setMaxLines(1);
         phoneField.setLines(1);
+        phoneField.setGravity(Gravity.RIGHT);
         phoneField.setPadding(0, 0, 0, 0);
         phoneField.setSingleLine(true);
         phoneField.setGravity(LocaleController.isRTL ? Gravity.RIGHT : Gravity.LEFT);
@@ -128,6 +146,7 @@ public class TransfareActivity extends BaseFragment {
         amountField.setHintTextColor(0xff979797);
         amountField.setTextColor(0xff212121);
         amountField.setMaxLines(1);
+        amountField.setGravity(Gravity.RIGHT);
         amountField.setLines(1);
         amountField.setPadding(0, 0, 0, 0);
         amountField.setSingleLine(true);
@@ -157,13 +176,26 @@ public class TransfareActivity extends BaseFragment {
         checkTextView.setGravity(Gravity.RIGHT );
         ((LinearLayout) fragmentView).addView(checkTextView, LayoutHelper.createLinear(LayoutHelper.WRAP_CONTENT, LayoutHelper.WRAP_CONTENT, LocaleController.isRTL ? Gravity.RIGHT : Gravity.LEFT, 24, 12, 24, 0));
 
+        Button button = new Button(context);
+
+        button.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 15);
+        button.setTextColor(0xff6d6d72);
+        button.setGravity(Gravity.CENTER);
         TextView helpTextView = new TextView(context);
         helpTextView.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 15);
         helpTextView.setTextColor(0xff6d6d72);
         helpTextView.setGravity(Gravity.RIGHT);
         helpTextView.setText(AndroidUtilities.replaceTags(LocaleController.getString("RefHelp", R.string.RefHelp)));
+        button.setText("ارسال");
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                saveName();
+            }
+        });
         ((LinearLayout) fragmentView).addView(helpTextView, LayoutHelper.createLinear(LayoutHelper.WRAP_CONTENT, LayoutHelper.WRAP_CONTENT, LocaleController.isRTL ? Gravity.RIGHT : Gravity.LEFT, 24, 10, 24, 0));
         ((LinearLayout) fragmentView).addView(amountField, LayoutHelper.createLinear(LayoutHelper.MATCH_PARENT, 36, 24, 24, 24, 0));
+        ((LinearLayout) fragmentView).addView(button, LayoutHelper.createLinear(LayoutHelper.MATCH_PARENT, LayoutHelper.WRAP_CONTENT, 24, 24, 24, 0));
 
 
         /*View v = LayoutInflater.from(context).inflate(R.layout.transfare_type, null);
@@ -205,14 +237,14 @@ public class TransfareActivity extends BaseFragment {
     }
 
     private void showErrorAlert(String error) {
-        if (getParentActivity() == null) {
+        if (getContext() == null) {
             return;
         }
-        AlertDialog.Builder builder = new AlertDialog.Builder(getParentActivity());
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
         builder.setTitle(LocaleController.getString("AppName", R.string.AppName));
         builder.setMessage(error);
         builder.setPositiveButton(LocaleController.getString("OK", R.string.OK), null);
-        showDialog(builder.create());
+        dialogsActivity.showDialog(builder.create());
     }
 
     private boolean checkUserName(final String name, boolean alert) {
@@ -275,7 +307,7 @@ public class TransfareActivity extends BaseFragment {
         if (!checkUserName(phoneField.getText().toString(), true)) {
             return;
         }
-        if (getParentActivity() == null ) {
+        if (getContext() == null ) {
             return;
         }
         String newName = phoneField.getText().toString();
@@ -292,7 +324,10 @@ public class TransfareActivity extends BaseFragment {
             showErrorAlert("مقدار انتقال باید عدد باشد");
             return;
         }
-
+        if(amountInt < 100){
+            showErrorAlert("مقدار انتقال باید بیشتر از 100 باشد");
+            return;
+        }
         int transfareType = 1;
         /*if(typeJoin.isChecked()){
             transfareType = 1;
@@ -300,7 +335,7 @@ public class TransfareActivity extends BaseFragment {
         else if(typeView.isChecked()){
             transfareType = 2;
         }*/
-        final ProgressDialog progressDialog = new ProgressDialog(getParentActivity());
+        final ProgressDialog progressDialog = new ProgressDialog(getContext());
         progressDialog.setMessage(LocaleController.getString("Loading", R.string.Loading));
         progressDialog.setCanceledOnTouchOutside(false);
 //        progressDialog.setCancelable(false);
@@ -314,7 +349,7 @@ public class TransfareActivity extends BaseFragment {
                 }
                 else {
                     Toast.makeText(context,"انتقال با موفقیت انجام شد",Toast.LENGTH_SHORT).show();
-                    finishFragment();
+//                    finishFragment();
                 }
             }
         });
@@ -324,9 +359,9 @@ public class TransfareActivity extends BaseFragment {
         startActivityForResult(intent, PICK_CONTACT);
     }
 
-    @Override
+//    @Override
     public void onActivityResultFragment(int reqCode, int resultCode, Intent data) {
-        super.onActivityResultFragment(reqCode, resultCode, data);
+//        super.onActivityResultFragment(reqCode, resultCode, data);
         if (reqCode == PICK_CONTACT) {
             if (resultCode == Activity.RESULT_OK) {
 
@@ -361,11 +396,21 @@ public class TransfareActivity extends BaseFragment {
         }
     }
 
-    @Override
+//    @Override
     public void onTransitionAnimationEnd(boolean isOpen, boolean backward) {
         if (isOpen) {
             phoneField.requestFocus();
             AndroidUtilities.showKeyboard(phoneField);
         }
+    }
+
+    @Override
+    public void refresh() {
+//        loadMore();
+    }
+
+    @Override
+    public void onRefresh() {
+//        loadMore();
     }
 }

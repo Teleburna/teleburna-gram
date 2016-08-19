@@ -58,7 +58,7 @@ public class Views {
         final TabLayout.Tab channels = tabLayout.newTab();
         final TabLayout.Tab posts = tabLayout.newTab();
         final TabLayout.Tab joinCoins = tabLayout.newTab();
-        final TabLayout.Tab viewCoins = tabLayout.newTab();
+        final TabLayout.Tab transfare = tabLayout.newTab();
 
 
 //        telegram.setIcon(R.drawable.ic_message);
@@ -67,7 +67,7 @@ public class Views {
         TextView text = (TextView)tabOne.findViewById(R.id.text);
         ImageView icon = (ImageView)tabOne.findViewById(R.id.icon);
         text.setText("خرید سکه");
-        icon.setImageResource(R.drawable.buy_coin);
+//        icon.setImageResource(R.drawable.buy_coin);
         joinCoins.setCustomView(tabOne);
 
 //        posts.setText("سکه رایگان");
@@ -77,7 +77,7 @@ public class Views {
         text = (TextView)tabTwo.findViewById(R.id.text);
         icon = (ImageView)tabTwo.findViewById(R.id.icon);
         text.setText("سکه رایگان");
-        icon.setImageResource(R.drawable.free_coin);
+//        icon.setImageResource(R.drawable.free_coin);
         posts.setCustomView(tabTwo);
 
         View tabThree =  LayoutInflater.from(context).inflate(R.layout.custom_tab, null);
@@ -85,9 +85,15 @@ public class Views {
         text = (TextView)tabThree.findViewById(R.id.text);
         icon = (ImageView)tabThree.findViewById(R.id.icon);
         text.setText("سفارش عضو");
-        icon.setImageResource(R.drawable.member);
+//        icon.setImageResource(R.drawable.member);
 
-        channels.setCustomView(tabThree);
+        View tabFour =  LayoutInflater.from(context).inflate(R.layout.custom_tab, null);
+        text = (TextView)tabFour.findViewById(R.id.text);
+        icon = (ImageView)tabFour.findViewById(R.id.icon);
+        text.setText("انتقال سکه");
+//        icon.setImageResource(R.drawable.free_coin);
+
+        transfare.setCustomView(tabFour);
 
         /*channels.setIcon(R.drawable.free_coin);
         posts.setIcon(R.drawable.member);
@@ -101,7 +107,7 @@ public class Views {
         tabLayout.addTab(joinCoins, 0);
         tabLayout.addTab(posts, 1);
         tabLayout.addTab(channels, 2);
-//        tabLayout.addTab(viewCoins, 4);
+        tabLayout.addTab(transfare, 3);
 
 //        tabLayout.setTabMode(ViewGroup.);
         tabLayout.setTabTextColors(ContextCompat.getColorStateList(context, R.color.abc_primary_text_material_dark));

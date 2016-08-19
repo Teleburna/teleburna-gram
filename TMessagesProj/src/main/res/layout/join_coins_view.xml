@@ -34,11 +34,11 @@
             android:layout_marginRight="5dp" />
 
         <ImageView
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:id="@+id/imageView"
-            android:src="@drawable/coin_gold"
-            android:layout_weight="1"
+            android:src="@drawable/new_coinnn"
+android:layout_gravity="center_vertical"
             android:scaleType="fitCenter" />
 
     </LinearLayout>

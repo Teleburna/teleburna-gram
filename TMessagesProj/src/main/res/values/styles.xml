@@ -87,7 +87,7 @@
     </style>
     <style name="MyCustomTabLayout" parent="Widget.Design.TabLayout">
         <item name="tabIndicatorColor">@color/divider</item>
-        <item name="android:background">@color/colorGrey</item>
+        <item name="android:background">#ea1e63</item>
     </style>
 
     <style name="MyDialog" parent="@android:style/Theme.Holo.Light.Dialog" tools:targetApi="honeycomb">
@@ -100,4 +100,17 @@
          <item name="android:windowFullscreen">false</item>
              <item name="title"-->
     </style>
+
+
+    <style name="MyTitleTextStyle">
+        <item name="android:textColor">#FFEB3B</item>
+        <item name="android:textAppearance">@style/TextAppearance.AppCompat.Title</item>
+    </style>
+    <style name="MyAlertDialogStyle" parent="Theme.AppCompat.Light.Dialog.Alert">
+        ...
+        <item name="android:windowTitleStyle">@style/MyTitleTextStyle</item>
+    </style>
+
+
+
 </resources>

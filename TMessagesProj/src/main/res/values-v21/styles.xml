@@ -111,6 +111,6 @@
 
     <style name="MyCustomTabLayout" parent="Widget.Design.TabLayout">
         <item name="tabIndicatorColor">@color/divider</item>
-        <item name="android:background">@color/colorGrey</item>
+        <item name="android:background">#ea1e63</item>
     </style>
 </resources>

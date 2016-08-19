@@ -5,8 +5,8 @@
 <resources>
 
     <!--Telegram Original Strings-->
-    <string name="AppName">کافه ممبر</string>
-    <string name="AppNameBeta">کافه ممبر بتا</string>
+    <string name="AppName">تله ممبرگرام</string>
+    <string name="AppNameBeta">تله ممبرگرام بتا</string>
     <string name="LanguageName">English</string>
     <string name="LanguageNameInEnglish">English</string>
     <string name="LanguageCode">en</string>

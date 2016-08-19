@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.util.Log;
 
+import org.cafemember.messenger.MessagesController;
+import org.cafemember.messenger.MessagesStorage;
 import org.json.JSONObject;
 import org.cafemember.messenger.AndroidUtilities;
 import org.cafemember.messenger.ApplicationLoader;
@@ -18,6 +20,7 @@ import org.cafemember.tgnet.TLObject;
 import org.cafemember.tgnet.TLRPC;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 
 /**
@@ -190,10 +193,38 @@ public class Defaults {
     }
 
     public void loadChannel(final Channel currentChannel, final OnChannelReady channelReady){
-        TLRPC.TL_contacts_search req = new TLRPC.TL_contacts_search();
+//        TLRPC.TL_contacts_search req = new TLRPC.TL_contacts_search();
+        TLRPC.TL_contacts_resolveUsername req = new TLRPC.TL_contacts_resolveUsername();
 
-        req.q = currentChannel.name;
-        req.limit = 3;
+        req.username = currentChannel.name;
+//        req.q = currentChannel.name;
+//        req.limit = 3;
+        /*Channel ch = new Select().from(Channel.class).where(Channel_Table.name.eq(currentChannel.name)).querySingle();
+        if(ch!= null) {
+            Log.e("LOAD",currentChannel.name+" Exist");
+            channelReady.onReady(ch, true);
+            return;
+        }
+        Log.e("LOAD",currentChannel.name+" Not Exist");*/
+        try {
+            TLRPC.Chat chat = MessagesController.getInstance().getChat((int) currentChannel.id);
+            if(chat != null){
+                currentChannel.title = chat.title;
+                currentChannel.id = chat.id;
+                if(chat.photo != null){
+                    currentChannel.photo = chat.photo.photo_small;
+                }
+                TLRPC.InputChannel inputChat = new TLRPC.TL_inputChannel();
+                inputChat.channel_id = chat.id;
+                inputChat.access_hash = chat.access_hash;
+                currentChannel.inputChannel = inputChat;
+                channelReady.onReady(currentChannel, true);
+                return;
+            }
+        }catch (Exception e){
+
+        }
+        Log.e("LOAD",currentChannel.name+" Not Exist");
         ConnectionsManager.getInstance().sendRequest(req, new RequestDelegate() {
             @Override
             public void run(final TLObject response, final TLRPC.TL_error error) {
@@ -201,8 +232,29 @@ public class Defaults {
                     @Override
                     public void run() {
                         if (error == null) {
-                            TLRPC.TL_contacts_found res = (TLRPC.TL_contacts_found) response;
-                            for (TLRPC.Chat chat: res.chats) {
+                            TLRPC.TL_contacts_resolvedPeer res = (TLRPC.TL_contacts_resolvedPeer) response;
+//                            TLRPC.TL_contacts_found res = (TLRPC.TL_contacts_found) response;
+
+                            MessagesController.getInstance().putUsers(res.users, false);
+                            MessagesController.getInstance().putChats(res.chats, false);
+                            MessagesStorage.getInstance().putUsersAndChats(res.users, res.chats, false, true);
+                            if (!res.chats.isEmpty()) {
+                                TLRPC.Chat chat = res.chats.get(0);
+                                currentChannel.title = chat.title;
+                                currentChannel.id = chat.id;
+                                if(chat.photo != null){
+                                    currentChannel.photo = chat.photo.photo_small;
+                                }
+                                TLRPC.InputChannel inputChat = new TLRPC.TL_inputChannel();
+                                inputChat.channel_id = chat.id;
+                                inputChat.access_hash = chat.access_hash;
+                                currentChannel.inputChannel = inputChat;
+//                                    currentChannel.save();
+                                Log.e("LOAD",currentChannel.name+" Found");
+                                channelReady.onReady(currentChannel, true);
+                                return;
+                            }
+                            /*for (TLRPC.Chat chat: res.chats) {
                                 if(chat.username.equals(currentChannel.name)){
                                     currentChannel.title = chat.title;
                                     currentChannel.id = chat.id;
@@ -213,19 +265,24 @@ public class Defaults {
                                     inputChat.channel_id = chat.id;
                                     inputChat.access_hash = chat.access_hash;
                                     currentChannel.inputChannel = inputChat;
+//                                    currentChannel.save();
+                                    Log.e("LOAD",currentChannel.name+" Found");
                                     channelReady.onReady(currentChannel, true);
                                     return;
                                 }
-                            }
+                            }*/
+                            Log.e("LOAD",currentChannel.name+"Not Found");
+
                             channelReady.onReady(currentChannel, false);
-                            Log.e("LOAD","Found But Not");
+                            return;
+//                            Log.e("LOAD","Found But Not");
 
                         }
                         channelReady.onReady(currentChannel, false);
-                        Log.e("LOAD","Really Not Found!");
+                        /*Log.e("LOAD","Really Not Found!");
                         if(error.text != null){
                             Log.e("LOAD",error.text);
-                        }
+                        }*/
 
                     }
                 });

@@ -1,134 +1,116 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal" android:layout_width="match_parent"
-    android:layout_height="@dimen/channel_item_height2">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:orientation="horizontal" android:layout_width="match_parent"
+                android:layout_height="@dimen/channel_item_height">
 
-<android.support.v7.widget.CardView
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-
-    android:padding="6dp"
-    android:layout_marginLeft="6dp"
-    android:layout_marginRight="6dp"
-    android:layout_marginTop="3dp"
-    android:layout_marginBottom="3dp">
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <de.hdodenhof.circleimageview.CircleImageView
-            xmlns:app="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/image"
-            android:layout_width="@dimen/avatar_height2"
-            android:layout_height="@dimen/avatar_height2"
-            android:src="@drawable/default_channel_icon"
-            android:layout_margin="5dp"
-            android:layout_gravity="center"
-
-            app:civ_border_width="2dp"
-            app:civ_border_color="#8e8e8e" />
-
-        <LinearLayout
-            android:orientation="vertical"
+    <android.support.v7.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
 
-            <LinearLayout
-                android:orientation="vertical"
+            android:padding="6dp"
+            android:layout_marginLeft="6dp"
+            android:layout_marginRight="6dp"
+            android:layout_marginTop="3dp"
+            app:cardBackgroundColor="#fff"
+            android:layout_marginBottom="3dp">
+        <RelativeLayout
+                android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical|right"
-                android:gravity="right"
-                android:layout_marginRight="20dp"
-                android:layout_weight="2">
+                android:layout_height="match_parent">
+            <LinearLayout android:layout_width="90dp"
 
-                <TextView
+                          android:id="@+id/linear"
+                          android:layout_height="match_parent">
+                <de.hdodenhof.circleimageview.CircleImageView
+                        xmlns:app="http://schemas.android.com/apk/res-auto"
+                        android:id="@+id/image"
+                        android:layout_width="@dimen/avatar_height"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/default_channel_icon"
+                        android:layout_margin="5dp"
+
+
+                        app:civ_border_width="0dp"
+                        app:civ_border_color="#00bcd5"/>
+            </LinearLayout>
+            <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:text="کانال خانه اندروید ایران"
                     android:id="@+id/title"
-                    android:textColor="#008271"
-                    android:layout_weight="1"
-                    android:layout_gravity="center_vertical|right"
-                    android:gravity="center"
-                    android:textSize="16dp"
-                    android:layout_marginTop="6dp" />
+                    android:textColor="#000"
+                    android:layout_toRightOf="@id/linear"
+                    android:layout_marginTop="5dp"
+                    android:singleLine="true"
+                    android:layout_marginLeft="6dp"
+                    android:textSize="16dp"/>
 
-                <LinearLayout
+            <LinearLayout
                     android:orientation="horizontal"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_below="@+id/title"
                     android:layout_gravity="center"
-                    android:gravity="right">
+                    android:layout_toRightOf="@id/linear">
 
-                    <TextView
+                <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         android:text="channel"
                         android:id="@+id/name"
-                        android:textColor="@android:color/black"
-                        android:layout_gravity="center"
-                        android:gravity="center"
-                        android:textSize="12dp"
-                        android:layout_marginRight="6dp" />
+                        android:textColor="@android:color/darker_gray"
+                        android:layout_marginLeft="6dp"
 
-                    <ImageView
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:id="@+id/imageView2"
-                        android:src="@drawable/home"
-                        android:layout_gravity="center" />
+                        android:layout_marginTop="6dp"
+                        android:textSize="12dp"/>
 
-                </LinearLayout>
+
             </LinearLayout>
 
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:layout_gravity="center_vertical|right"
-                android:layout_weight="1">
-
-                <Button
+            <Button
                     android:layout_width="80dp"
                     android:layout_height="@dimen/my_button_height"
-                    android:id="@+id/delete"
+                    android:id="@+id/reserve"
                     android:scaleType="fitCenter"
-                    android:background="@drawable/button_red"
-                    android:layout_marginBottom="10dp"
-                    android:text="حذف کردن"
-                    android:textColor="@android:color/white"
+                    android:background="@null"
+
+                    android:text="سفارش عضو"
+                    android:textColor="#00BCD5"
                     android:ems="5"
                     android:layout_marginRight="10dp"
                     android:layout_marginLeft="10dp"
                     android:layout_weight="1"
                     android:layout_marginTop="10dp"
-                    android:textSize="14dp" />
+                    android:textSize="14dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentRight="true"
+            />
 
-                <Button
+            <Button
                     android:layout_width="80dp"
                     android:layout_height="@dimen/my_button_height"
-                    android:id="@+id/reserve"
-                    android:background="@drawable/button_blue"
+                    android:id="@+id/delete"
+                    android:background="@null"
                     android:scaleType="fitCenter"
-                    android:text="سفارش عضو"
-                    android:textColor="@android:color/white"
+                    android:text="حذف کردن"
+                    android:textColor="#ea1e63"
                     android:ems="5"
+                    android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
                     android:layout_weight="1"
-                    android:layout_marginBottom="10dp"
+
                     android:textSize="14dp"
-                    android:layout_margin="10dp" />
+                    android:layout_alignParentBottom="true"
+                    android:layout_toLeftOf="@+id/reserve"/>
 
-            </LinearLayout>
-        </LinearLayout>
 
-    </LinearLayout>
+        </RelativeLayout>
 
-</android.support.v7.widget.CardView>
 
-</LinearLayout>
+    </android.support.v7.widget.CardView>
+
+</RelativeLayout>

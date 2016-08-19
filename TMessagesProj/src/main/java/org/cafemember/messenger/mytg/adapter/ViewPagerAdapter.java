@@ -10,6 +10,7 @@ import org.cafemember.messenger.mytg.fragments.ChannelsFragment;
 import org.cafemember.messenger.mytg.fragments.MyChannelFragment;
 import org.cafemember.messenger.mytg.fragments.CoinFragment;
 import org.cafemember.messenger.mytg.fragments.TgFragment;
+import org.cafemember.messenger.mytg.fragments.TransfareActivity;
 import org.cafemember.ui.DialogsActivity;
 
 /**
@@ -23,12 +24,14 @@ public class ViewPagerAdapter extends FragmentStatePagerAdapter {
     private ChannelsFragment channelsFragment;
     private MyChannelFragment myChannelFragment;
     private CoinFragment coinFragment;
+    private TransfareActivity transfareFragment;
     public ViewPagerAdapter(FragmentManager fm, DialogsActivity dialogsActivity, View dialogsLayout) {
         super(fm);
         this.dialogsActivity = dialogsActivity;
         this.frameLayout = dialogsLayout;
         channelsFragment = new ChannelsFragment(dialogsActivity);
         myChannelFragment = new MyChannelFragment(dialogsActivity);
+        transfareFragment = new TransfareActivity(dialogsActivity);
         coinFragment = new CoinFragment(false);
 
 //        tgFragment = new TgFragment(frameLayout);
@@ -45,6 +48,8 @@ public class ViewPagerAdapter extends FragmentStatePagerAdapter {
                 return channelsFragment;
             case 2:
                 return myChannelFragment;
+            case 3:
+                return transfareFragment;
             case 0:
                 return coinFragment;
 
@@ -56,7 +61,7 @@ public class ViewPagerAdapter extends FragmentStatePagerAdapter {
 
     @Override
     public int getCount() {
-        return 3;           // As there are only 3 Tabs
+        return 4;           // As there are only 3 Tabs
     }
 
 }

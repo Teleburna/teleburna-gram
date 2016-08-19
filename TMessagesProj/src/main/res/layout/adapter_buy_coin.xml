@@ -27,12 +27,12 @@
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_marginBottom="3dp"
-                android:layout_marginLeft="15dp"
+                android:layout_marginLeft="10dp"
                 android:layout_marginRight="0dp"
                 android:layout_marginTop="3dp"
                 android:contextClickable="true"
-                android:padding="6dp"
-                android:src="@drawable/coin_green"
+
+                android:src="@drawable/coin_blue_64"
                 android:scaleType="fitCenter" />
 
             <TextView
@@ -78,7 +78,7 @@
                     android:lines="1"
                     android:padding="0dp"
                     android:text="3500 تومان"
-                    android:textColor="@color/colorPrimary" />
+                    android:textColor="#ea1e63" />
             </LinearLayout>
 
             <ImageView
@@ -90,8 +90,8 @@
                 android:layout_marginRight="0dp"
                 android:layout_marginTop="3dp"
                 android:contextClickable="true"
-                android:padding="6dp"
-                android:src="@drawable/buy_card_red"
+
+                android:src="@drawable/cart_buy"
                 android:scaleType="fitCenter" />
 
 

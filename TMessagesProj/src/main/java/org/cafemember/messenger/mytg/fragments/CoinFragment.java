@@ -65,15 +65,15 @@ public class CoinFragment extends Fragment implements Refrashable {
         final ProgressBar loading = (ProgressBar)view.findViewById(R.id.progressBar2);
         loading.setVisibility(View.VISIBLE);
         listViewJoin = (ListView) view.findViewById(R.id.listJoin);
-        total = (TextView) view.findViewById(R.id.total);
-        totalCoins = Defaults.getInstance().getMyCoin();
-        total.setText(totalCoins+"");
-        Commands.loadCoins(new OnCoinsReady() {
+      //  total = (TextView) view.findViewById(R.id.total);
+      //  totalCoins = Defaults.getInstance().getMyCoin();
+      //  total.setText(totalCoins+"");
+       /* Commands.loadCoins(new OnCoinsReady() {
             @Override
             public void onCoins(int viewCoins, int joinCoins) {
                 total.setText(joinCoins+"");
             }
-        });
+        });*/
         Commands.coinsPrice(new OnResponseReadyListener() {
             @Override
             public void OnResponseReady(boolean error, JSONObject data, String message) {

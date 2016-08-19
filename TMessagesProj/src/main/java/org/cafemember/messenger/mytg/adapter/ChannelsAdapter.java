@@ -105,7 +105,7 @@ public class ChannelsAdapter extends ArrayAdapter {
                 getContext().startActivity(telegram);
             }
         });
-        viewHolder.name.setText(channel.name);
+        viewHolder.name.setText("@"+channel.name);
         viewHolder.title.setText(channel.title);
         viewHolder.report.setOnClickListener(new View.OnClickListener() {
             @Override
