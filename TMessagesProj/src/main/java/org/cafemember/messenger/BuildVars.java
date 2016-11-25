@@ -6,7 +6,7 @@
  * Copyright Nikolai Kudashov, 2013-2016.
  */
 
-package org.cafemember.messenger;
+package org.teleburna.messenger;
 
 public class BuildVars {
     public static boolean DEBUG_VERSION = false;
