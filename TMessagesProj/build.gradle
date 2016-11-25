@@ -24,7 +24,7 @@ android {
     buildToolsVersion '23.0.3'
 
     useLibrary 'org.apache.http.legacy'
-    defaultConfig.applicationId = "ir.telemember.gram"
+    defaultConfig.applicationId = "ir.teleburna.gram"
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_7
