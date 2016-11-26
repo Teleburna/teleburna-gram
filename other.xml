@@ -1,0 +1,20 @@
+<application>
+  <component name="RecentTaskRepositories">
+    <GitHub shared="true" url="https://github.com">
+      <option name="assignedIssuesOnly" value="true" />
+      <commitMessageFormat>{id} {summary}</commitMessageFormat>
+      <password />
+      <token />
+      <option name="loginAnonymously" value="false" />
+      <option name="preferredCloseTaskState" />
+      <option name="preferredOpenTaskState" />
+      <option name="repoAuthor" value="Teleburna" />
+      <option name="repoName" value="teleburna-gram" />
+      <option name="shouldFormatCommitMessage" value="true" />
+      <option name="useHttpAuthentication" value="false" />
+      <option name="useProxy" value="false" />
+      <option name="user" value="" />
+      <username />
+    </GitHub>
+  </component>
+</application>
