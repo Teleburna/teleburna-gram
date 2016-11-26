@@ -1,0 +1,8 @@
+<application>
+  <component name="NotificationConfiguration">
+    <notification groupId="Common Version Control Messages" />
+    <notification groupId="Find in Path" />
+    <notification groupId="IDE Usage Statistics" />
+    <notification groupId="Indexing" />
+  </component>
+</application>
