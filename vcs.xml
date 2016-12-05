@@ -6,6 +6,10 @@
           <option name="url" value="https://github.com/Teleburna/larave.git" />
           <option name="userName" value="" />
         </UrlAndUserName>
+        <UrlAndUserName>
+          <option name="url" value="https://github.com/Teleburna/teleburna-gram.git" />
+          <option name="userName" value="" />
+        </UrlAndUserName>
       </list>
     </option>
     <option name="cloneParentDir" value="H:\Teleburna.Abk\larave" />
