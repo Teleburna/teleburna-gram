@@ -18,6 +18,10 @@
           <option name="url" value="https://github.com/Teleburna/pwrtelegram.git" />
           <option name="userName" value="" />
         </UrlAndUserName>
+        <UrlAndUserName>
+          <option name="url" value="https://github.com/Teleburna/TeeChart-VCL-for-VCL-Delphi-CBuilder--applications-samples.git" />
+          <option name="userName" value="" />
+        </UrlAndUserName>
       </list>
     </option>
     <option name="cloneParentDir" value="H:\Teleburna.Abk\larave" />
