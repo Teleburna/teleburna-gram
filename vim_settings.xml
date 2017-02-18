@@ -3,13 +3,14 @@
     <state version="4" enabled="true" />
     <globalmarks />
     <filemarks>
-      <file name="/Dummy.txt" timestamp="1487427880100">
+      <file name="D:/pwrtelegram-app-master/pwrtelegram-app-master/TMessagesProj/src/main/gen/xyz/pwrtelegram/messenger/BuildConfig.java" timestamp="1487432265901" />
+      <file name="/Dummy.txt" timestamp="1487432196445">
+        <mark key="a" line="0" column="0" />
         <mark key="[" line="0" column="0" />
       </file>
       <file name="H:/Teleburna.Abk/teleburna-gram/TMessagesProj/config/foss/AndroidManifest.xml" timestamp="1487426135148">
         <mark key="[" line="2" column="16" />
       </file>
-      <file name="D:/pwrtelegram-app-master/pwrtelegram-app-master/.gitignore" timestamp="1487427734629" />
       <file name="/fragment.java" timestamp="1487429130967">
         <mark key="[" line="0" column="0" />
       </file>
