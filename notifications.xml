@@ -3,6 +3,7 @@
     <notification groupId="Common Version Control Messages" />
     <notification groupId="Debugger messages" displayType="TOOL_WINDOW" />
     <notification groupId="Find in Path" />
+    <notification groupId="IDE Usage Statistics" displayType="STICKY_BALLOON" />
     <notification groupId="Indexing" />
   </component>
 </application>
