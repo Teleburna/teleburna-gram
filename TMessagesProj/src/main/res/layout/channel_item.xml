@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:orientation="horizontal" android:layout_width="match_parent"
+                android:layout_height="@dimen/channel_item_height">
+
+    <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+            android:padding="6dp"
+            android:layout_marginLeft="6dp"
+            android:layout_marginRight="6dp"
+            android:layout_marginTop="3dp"
+            app:cardBackgroundColor="#fff"
+            android:layout_marginBottom="3dp">
+        <RelativeLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                    xmlns:app="http://schemas.android.com/apk/res-auto"
+                    android:id="@+id/image"
+                    android:layout_width="@dimen/avatar_height"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/default_channel_icon"
+                    android:layout_margin="5dp"
+
+
+                    app:civ_border_width="0dp"
+                    app:civ_border_color="#00bcd5"/>
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="کانال خانه اندروید ایران"
+                    android:id="@+id/title"
+                    android:textColor="#000"
+                    android:layout_toRightOf="@id/image"
+                    android:layout_marginTop="5dp"
+android:singleLine="true"
+                    android:textSize="16dp"/>
+
+            <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_below="@+id/title"
+                    android:layout_gravity="center"
+                    android:layout_toRightOf="@id/image">
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="channel"
+                        android:id="@+id/name"
+                        android:textColor="@android:color/darker_gray"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:layout_margin="6dp"
+                        android:textSize="12dp"/>
+
+
+            </LinearLayout>
+
+            <Button
+                    android:layout_width="80dp"
+                    android:layout_height="@dimen/my_button_height"
+                    android:id="@+id/join"
+                    android:scaleType="fitCenter"
+                    android:background="@null"
+
+                    android:text="عضویت 1+"
+                    android:textColor="#00BCD5"
+                    android:ems="5"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_weight="1"
+                    android:layout_marginTop="10dp"
+                    android:textSize="14dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            />
+
+            <Button
+                    android:layout_width="80dp"
+                    android:layout_height="@dimen/my_button_height"
+                    android:id="@+id/report"
+                    android:background="@null"
+                    android:scaleType="fitCenter"
+                    android:text="گزارش دادن"
+                    android:textColor="#ea1e63"
+                    android:ems="5"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="1"
+
+                    android:textSize="14dp"
+            android:layout_alignParentBottom="true"
+            android:layout_toLeftOf="@+id/join"/>
+
+
+
+
+
+
+        </RelativeLayout>
+
+
+    </android.support.v7.widget.CardView>
+
+</RelativeLayout>
